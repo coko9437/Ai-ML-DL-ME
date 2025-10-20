@@ -1,0 +1,263 @@
+#리액트_스프링_연동
+1 자료1
+https://gamma.app/docs/API-JWT-eh1or5czp6xgh2m?mode=doc
+2 자료2
+스프링 부트 서버 백엔드 깃 주소
+https://github.com/lsy3709/React-Spring-Con-Work-boot-Backend.git
+3 자료3
+리액트 프론트 엔드 깃 주소
+https://github.com/lsy3709/React-Spring-Con-Work-boot-Frontend-.git
+3-2 자료4
+플라스크 서버 깃 주소
+https://github.com/lsy3709/AI-ML-Rest-Server-Sample-Flask-
+3-3 자료5
+샘플 모델 위치.
+망치, 니퍼,
+나머지 모든 모델 샘플도 있음.
+https://www.band.us/band/98498013/attachment/folder/1495148
+
+4 모델 탑재한, 레스트 (플라스크서버)
+현재 프로젝트 폴더 -> 3-Resnet -> 플라스크 서버 샘플 작업.txt
+파일 참고,
+flask 서버 실행 명령어
+python app.py
+
+5 스프링 부트 연동된 , 마리아 디비, 몽고디비 머신 시작
+도커 데스크탑에서,
+마리아 디비 시작.
+
+몽고디비 시작 명령어
+mongod --dbpath D:\MongoDB\data
+
+6 스프링 부트
+몽고디비 설정,
+application.properties 파일에서,
+
+spring.data.mongodb.uri=mongodb://localhost:27017/test
+
+7
+시작
+1) 스프링 부트 , 시작 버튼 클릭
+2) 리액트 서버 시작,
+터미널에서, 해당 폴더로 이동 후,
+cd .\react-spring-con-test\
+-> yarn dev , 실행하기.
+
+3) 리액트 , 풀 받아서,
+yarn install
+
+8
+스프링 부트 서버에서, 레스트 작업 진행하기.
+한번에 작업 후, 깃 푸쉬에서, 깃의 커밋 히스토리를 참고 하시면,
+작업 한 내역이 동기화가 되어서 확인 가능함.
+
+확인 테스트
+1) 포스트맨
+액세스 토큰을 리액트 로그인 후, 애플리케이션에서 저장된 액세스 토큰을 따로 저장.
+포스트 맨, authorization -> bearer token -> 토큰 붙여넣기
+나머지, body -> 이미지 첨부 후, 전송.
+ 참고 url 주소,
+ http://localhost:8080/api/ai/predict/1
+
+2) 리액트에서
+로그인 후 -> AiTest -> 공구 툴 화면 -> 이미지 업로드 후 확인시, 정상 출력 .
+
+-------------------------------------------------------------
+
+삼성 주가 모델 이용, 레스트 버전
+1. 주가 정보 요청
+포스트맨에서, -> 스프링으로 요청시 주의사항,
+get 방식
+URL : http://localhost:8080/api/ai2/stock-data?period=5d
+1) 토큰을 탑재
+예시 토큰
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtaWQiOiJsc3kxMDE0IiwiaWF0IjoxNzYwNDkxNTc3LCJleHAiOjE3NjA1Nzc5Nzd9.JZ64urPyrgwzNOGW6eqNnzapviHaP4kFnau7BdD75pE
+Authorization 탭 -> Auth Type : Bearer Token -> 오른쪽에 토큰값 붙여넣기
+
+2) 전달하는 형식
+Params 탭 -> 키: period -> 값 : 5d
+send
+
+
+2. 주가 예측 요청
+post 방식
+URL : http://localhost:8080/api/ai2/predict/rnn
+1) 토큰을 탑재
+예시 토큰
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtaWQiOiJsc3kxMDE0IiwiaWF0IjoxNzYwNDkxNTc3LCJleHAiOjE3NjA1Nzc5Nzd9.JZ64urPyrgwzNOGW6eqNnzapviHaP4kFnau7BdD75pE
+Authorization 탭 -> Auth Type : Bearer Token -> 오른쪽에 토큰값 붙여넣기
+
+2) 전달하는 형식
+Body 탭 -> raw 탭 -> Text -> JSON 변경
+내용에.
+json 복사
+{
+"model":"RNN",
+"data":[[83300,83200,85000,84200],[84600,83400,84900,83900],[84900,84700,86200,86000],[89300,88700,90300,89750]],
+"period":"5d"
+}
+=========99-152번 줄까지======================================================
+3  새로운 동물상, 폐가전, 공구, yolov8, 모델 확인.
+3-1  동물상
+포스트맨에서, -> 스프링으로 요청시 주의사항,
+post 방식
+URL : http://localhost:8080/api/ai/predict/1
+1) 토큰을 탑재
+예시 토큰
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtaWQiOiJsc3kxMDE0IiwiaWF0IjoxNzYwNDkxNTc3LCJleHAiOjE3NjA1Nzc5Nzd9.JZ64urPyrgwzNOGW6eqNnzapviHaP4kFnau7BdD75pE
+Authorization 탭 -> Auth Type : Bearer Token -> 오른쪽에 토큰값 붙여넣기
+
+2) 전달하는 형식
+Body 탭 -> form-data 탭 ->  키: image -> 값 : 파일 형식, 이미지 선택.
+send
+
+3-2  폐가전
+포스트맨에서, -> 스프링으로 요청시 주의사항,
+post 방식
+URL : http://localhost:8080/api/ai/predict/2
+1) 토큰을 탑재
+예시 토큰
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtaWQiOiJsc3kxMDE0IiwiaWF0IjoxNzYwNDkxNTc3LCJleHAiOjE3NjA1Nzc5Nzd9.JZ64urPyrgwzNOGW6eqNnzapviHaP4kFnau7BdD75pE
+Authorization 탭 -> Auth Type : Bearer Token -> 오른쪽에 토큰값 붙여넣기
+
+2) 전달하는 형식
+Body 탭 -> form-data 탭 ->  키: image -> 값 : 파일 형식, 이미지 선택.
+send
+
+3-3  공구
+포스트맨에서, -> 스프링으로 요청시 주의사항,
+post 방식
+URL : http://localhost:8080/api/ai/predict/3
+1) 토큰을 탑재
+예시 토큰
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtaWQiOiJsc3kxMDE0IiwiaWF0IjoxNzYwNDkxNTc3LCJleHAiOjE3NjA1Nzc5Nzd9.JZ64urPyrgwzNOGW6eqNnzapviHaP4kFnau7BdD75pE
+Authorization 탭 -> Auth Type : Bearer Token -> 오른쪽에 토큰값 붙여넣기
+
+2) 전달하는 형식
+Body 탭 -> form-data 탭 ->  키: image -> 값 : 파일 형식, 이미지 선택.
+send
+
+3-4  yolov8
+포스트맨에서, -> 스프링으로 요청시 주의사항,
+post 방식
+URL : http://localhost:8080/api/ai/predict/4
+1) 토큰을 탑재
+예시 토큰
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtaWQiOiJsc3kxMDE0IiwiaWF0IjoxNzYwNDkxNTc3LCJleHAiOjE3NjA1Nzc5Nzd9.JZ64urPyrgwzNOGW6eqNnzapviHaP4kFnau7BdD75pE
+Authorization 탭 -> Auth Type : Bearer Token -> 오른쪽에 토큰값 붙여넣기
+
+2) 전달하는 형식
+Body 탭 -> form-data 탭 ->  키: image -> 값 : 파일 형식, 이미지 선택.
+send
+===============================================================
+-----------------------------------------
+리액트 버전에서,
+1) 주가 정보 데이터 요청 구조
+로그인 후 -> 홈의 헤더 화면 Ai Test -> 사이드 메뉴 2번 , 삼성 주가 예측
+
+삼성 주가 예측에서, -> 5d 기간 선택 후, 데이터 가져오기 클릭 할 때 동작 구조,
+
+순서
+1)fetchStockData 함수 호출
+2) ->  dispatch(fetchStockDataRequest(selectedPeriod)); 함수 호출
+3) fetchStockDataRequest (aiSlice 파일로 이동)
+4) -> aiSaga 파일로 연결
+5) ->  yield takeLatest(fetchStockDataRequest.type, fetchStockDataSaga);
+6) -> fetchStockDataSaga 함수 호출
+fetchStockDataSaga 함수의 내용
+-> // ✅ 주가 데이터 가져오기 요청
+function* fetchStockDataSaga(action) {
+    try {
+        const response = yield call(
+            axiosInstance.get,
+            `/ai2/stock-data?period=${action.payload}`, // ✅ Base URL 적용됨
+        );
+        ....
+
+포스트맨에서 호출 했던 주소 처럼
+http://localhost:8080/api/ai2/stock-data?period=5d
+
+
+---------------------------------------------------------------
+스프링에서의 진행 순서 개요
+이미지 분류
+1. 동물상
+1) 포스트맨에서 호출 : http://localhost:8080/api/ai/predict/1, 메서드: POST
+Body 탭 -> form-data 탭 ->  키: image -> 값 : 파일 형식, 이미지 선택. send
+2) 컨트롤러에 요청
+   @PostMapping("/predict/{teamNo}")
+public AiPredictionResponseDTO uploadImage(
+  @PathVariable int teamNo,
+  @RequestParam(value = "image", required = false) MultipartFile image){
+  AiPredictionResponseDTO responseDTO = aiUploadService.sendImageToDjangoServer(
+  image.getBytes(), image.getOriginalFilename(), teamNo);
+
+3) 서비스에 요청 ,
+aiUploadService.sendImageToDjangoServer(
+  image.getBytes(), image.getOriginalFilename(), teamNo) {
+   sendInitialRequest(imageBytes, filename, teamNo);
+  }
+  ;
+
+4) 서비스에 -> 플라스크 서버로 요청,
+sendInitialRequest 함수 실행
+
+private AiPredictionResponseDTO sendInitialRequest(byte[] fileBytes, String filename,
+int teamNo) throws IOException {
+        String flaskUrl;
+
+        // 팀 번호에 따라 URL 분기
+        switch (teamNo) {
+            case 1:
+                flaskUrl = "http://localhost:5000/predict/team1";
+                break;
+            case 2:
+                flaskUrl = "http://localhost:5000/predict/team2";
+                break;
+            case 3:
+                flaskUrl = "http://localhost:5000/predict/team3";
+                break;
+            case 4:
+                // YOLO 예측 요청 경로는 /predict/yolo (가정)
+                flaskUrl = "http://localhost:5000/predict/yolo";
+
+5) 플라스크 서버에, 요청 받은 주소,
+http://localhost:5000/predict/team1
+
+@app.route("/predict/<model_type>", methods=["POST"])
+def predict(model_type):
+
+        if model_type == 'yolo':
+
+        elif model_type in MODEL_CONFIGS:
+        try:
+            model, class_labels = load_classification_model(model_type)
+            image_bytes = file.read()
+
+6) 각 모델의 라벨링 분류 확인.
+# --- 이미지 분류 모델 설정 (요청 시 로드) ---
+MODEL_CONFIGS = {
+    "team1": {"model_path": "./resnet50_best_team1_animal.pth", "num_classes": 5,
+              "class_labels": ["고양이", "공룡", "강아지", "꼬북이", "티벳여우"]},
+    "team2": {"model_path": "./resnet50_best_team2_recycle.pth", "num_classes": 13,
+              "class_labels": ["영업용_냉장고", "컴퓨터_cpu", "드럼_세탁기", "냉장고",
+              "컴퓨터_그래픽카드", "메인보드", "전자레인지", "컴퓨터_파워", "컴퓨터_램",
+                               "스탠드_에어컨", "TV", "벽걸이_에어컨", "통돌이_세탁기"]},
+    "team3": {"model_path": "./resnet50_best_team3_tools_accuracy_90.pth", "num_classes": 10,
+              "class_labels": ["공구 톱", "공업용가위", "그라인더", "니퍼",
+              "드라이버", "망치", "스패너", "전동드릴", "줄자", "캘리퍼스"]},
+}
+
+7)
+모델이 예측한 결과를 응답, json
+{
+  "confidence": "58.48%",
+    "class_index": 0,
+    "predicted_class": "고양이",
+}
+
+8) 최초 호출자에게 전달,
+포스트맨, 리액트, 플러터 에게 답을 함.
+그러면, 각각의 끝단에서, 전달받은 데이터를 가지고,
+화면을 구성을함.
+
